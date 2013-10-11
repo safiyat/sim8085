@@ -48,8 +48,13 @@ void MainWindow::process()
 
         if(isalpha(text.at(i)))
             alcount++;
-        else if(((text.at(i) == '*') || (text.at(i) == '*')) && alcount == 0)
-            return;
+        else if((text.at(i) == '*') || (text.at(i) == '+'))
+        {
+            if(alcount == 0)
+                return;
+            if(text.at(i - 1) != ')' && !isalpha(text.at(i - 1)))
+                return;
+        }
         i++;
     }
     if(alcount == 0 || parenthesis != 0)
